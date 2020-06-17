@@ -1,0 +1,38 @@
+version: 2.1
+
+references:
+  container_config: &container_config
+    docker:
+      - image: circleci/node:12-browsers
+    working_directory: ~/app
+
+  restore_deps_cache: &restore_deps_cache
+    restore_cache:
+      keys:
+        - v1-dependencies-{{ checksum "package.json" }}
+        - v1-dependencies-
+
+  save_deps_cache: &save_deps_cache
+    save_cache:
+      key: v1-dependencies-{{ checksum "package.json" }}
+      paths:
+        - node_modules
+
+  install_deps: &install_deps
+    run:
+      name: Dependencies
+      command: npm install
+
+jobs:
+  test:
+    <<: *container_config
+    steps:
+      - checkout
+      - *restore_deps_cache
+      - *install_deps
+      - *save_deps_cache
+
+workflows:
+  default:
+    jobs:
+      - test
