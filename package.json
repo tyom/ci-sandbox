@@ -1,6 +1,7 @@
 {
   "scripts": {
     "dev": "next",
+    "test": "testcafe chrome test/**/*.js --app 'npm start'",
     "build": "next build",
     "start": "next start",
     "export": "next export"
@@ -9,5 +10,9 @@
     "next": "^9.4.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "prettier": "2.0.5",
+    "testcafe": "1.8.6"
   }
 }

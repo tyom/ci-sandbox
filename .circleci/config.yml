@@ -20,7 +20,7 @@ references:
 
   install_deps: &install_deps
     run:
-      name: Dependencies
+      name: Install Dependencies
       command: npm install
 
 jobs:
@@ -31,6 +31,12 @@ jobs:
       - *restore_deps_cache
       - *install_deps
       - *save_deps_cache
+      - run:
+          name: Build app
+          command: npm run build
+      - run:
+          name: Run test
+          command: npm test
 
 workflows:
   default:
