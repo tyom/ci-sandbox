@@ -1,0 +1,13 @@
+FROM circleci/node:12-browsers
+USER root
+
+ENV workdir /app
+
+WORKDIR "$workdir"
+
+COPY test "$workdir/test"
+COPY package.json "$workdir/package.json"
+
+RUN npm install
+
+CMD ["npm", "test"]

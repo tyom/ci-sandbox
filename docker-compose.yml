@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  app:
+    image: ci-sandbox-next-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/app/src
+    ports:
+      - '3000:3000'
+
+  test:
+    image: ci-sandbox-next-test
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    depends_on:
+      - app
+    volumes:
+      - ./test:/home/user/test
+    network_mode: 'container:ci-sandbox_app_1'

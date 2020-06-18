@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "next",
-    "test": "testcafe chrome test/**/*.js --app 'make run'",
+    "test": "testcafe chrome test/**/*.js",
     "build": "next build",
     "start": "next start",
     "export": "next export"

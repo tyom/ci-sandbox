@@ -30,15 +30,12 @@ jobs:
       - checkout
       - setup_remote_docker:
           docker_layer_caching: true
-      - *restore_deps_cache
-      - *install_deps
-      - *save_deps_cache
       - run:
-          name: Build app
+          name: Build Docker images
           command: make build
       - run:
-          name: Run test
-          command: npm test
+          name: Run test and server
+          command: make test
 
 workflows:
   default:
